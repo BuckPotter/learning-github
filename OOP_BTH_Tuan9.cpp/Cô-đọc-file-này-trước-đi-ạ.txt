@@ -1,0 +1,4 @@
+Em chào Cô,
+Trong bài nộp của em ở một số file header, file xử lý, file main em có viết lệnh include hơi "kỳ quặc", em chạy code trên VSCode phải include như thế mới chạy được.
+Em không biết lên Visual Studio của Cô code có bị lỗi include khi chạy code của em không, nên là nếu bị lỗi thì Cô xem sửa lại các lệnh include giúp em để chạy được ạ.
+Em cảm ơn Cô.

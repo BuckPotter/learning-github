@@ -14,11 +14,12 @@ DIEMMAU3C::DIEMMAU3C(DIEM3C d, int rr, int gg, int bb)
 
 DIEMMAU3C::~DIEMMAU3C() // Đưa điểm này về lại gốc tọa độ mà đưa các giá trị màu về lại 0
 {
+    // Kế thừa phương thức đã xây dựng từ lớp cha
     SetXYZ(0, 0, 0);
     Set_Mau(0, 0, 0);
 }
 
-DIEMMAU3C DIEMMAU3C::Get()
+DIEMMAU3C DIEMMAU3C::Get() // Trả về đối tượng đang xét
 {
     return *this;
 }
@@ -38,17 +39,6 @@ int DIEMMAU3C::Get_B()
     return bl;
 }
 
-bool DIEMMAU3C::KiemTraMau() // Kiểm tra mã màu của đối tượng đang xét có hợp lệ hay không
-{
-    if (r < 0 || r > 255)
-        return 0;
-    if (gr < 0 || gr > 255)
-        return 0;
-    if (bl < 0 || bl > 255)
-        return 0;
-    return 1;
-}
-
 void DIEMMAU3C::Set_Mau(int rr, int gg, int bb)
 {
     r = rr;
@@ -65,7 +55,18 @@ void DIEMMAU3C::Set_Mau(int rr, int gg, int bb)
     }
 }
 
-bool DIEMMAU3C::KiemTraTrungMau(DIEMMAU3C d)
+bool DIEMMAU3C::KiemTraMau() // Kiểm tra mã màu của đối tượng đang xét có hợp lệ hay không
+{
+    if (r < 0 || r > 255)
+        return 0;
+    if (gr < 0 || gr > 255)
+        return 0;
+    if (bl < 0 || bl > 255)
+        return 0;
+    return 1;
+}
+
+bool DIEMMAU3C::KiemTraTrungMau(DIEMMAU3C d) // Kiểm tra 2 đối tượng có trùng màu với nhau không
 {
     if (r != d.r || gr != d.gr || bl != d.bl)
         return 0;
@@ -74,7 +75,7 @@ bool DIEMMAU3C::KiemTraTrungMau(DIEMMAU3C d)
 
 void DIEMMAU3C::Nhap()
 {
-    this->DIEM3C::Nhap(); // Phương thức nhập điểm trong lớp DIEM3C
+    this->DIEM3C::Nhap(); // Phương thức nhập điểm trong lớp cha DIEM3C
     do
     {
         cout << "\tNhap ma mau RGB:\n";
@@ -91,7 +92,7 @@ void DIEMMAU3C::Nhap()
 
 void DIEMMAU3C::Xuat()
 {
-    this->DIEM3C::Xuat();
+    this->DIEM3C::Xuat(); // Kế thừa phương thức xuất điểm 3 chiều từ lớp cha DIEM3C
     cout << ". Ma mau RGB: " << r << " - " << gr << " - " << bl;
 }
 

@@ -23,15 +23,15 @@ public:
     void SetXY(double, double);
     void Nhap();
     void Xuat();
-    void DiChuyen(double, double);
-    bool KiemTra(DIEM);
-    double KhoangCach(DIEM);                       //Tra ve 1 so thuc la khoang cach cua 2 diem hay do dai 1 canh
-    DIEM Doi_Xung_Qua_O();                         //Tim diem doi xung voi diem dang xet qua O
-    double Chu_Vi_Tam_Giac(DIEM, DIEM);            //Tra ve 1 so thuc la chu vi cua tam giac
-    double Do_Dai_Canh();                          //Tra ve 1 so thuc la khoang cach cua 2 diem hay do dai 1 canh
-    double Dien_Tich_Tam_Giac(DIEM, DIEM);         //Tra ve 1 so thuc la dien tich cua tam giac
-    friend istream &operator>>(istream &, DIEM &); //De chong toan tu >>
-    friend ostream &operator<<(ostream &, DIEM);   //De chong toan tu <<
+    void DiChuyen(double = 0, double = 0);
+    bool KiemTra(DIEM);                            // Kiểm tra 2 điểm có trùng nhau hay không
+    double KhoangCach(DIEM);                       // Trả về 1 số thực là khoảng cách của 2 điểm
+    DIEM DiemDoiXung();                            // Tìm điểm đối xứng của điểm đang xét qua O
+    bool KiemTraTamGiac(DIEM, DIEM);               // Kiểm tra 3 đỉnh có thể tạo thành tam giac hay không
+    double Chu_Vi_Tam_Giac(DIEM &, DIEM &);        // Tham chiếu để thay đổi điểm khi nhập lại trong trường hợp tam giác không hợp lệ
+    double Dien_Tich_Tam_Giac(DIEM &, DIEM &);     // Tham chiếu để thay đổi điểm khi nhập lại trong trường hợp tam giác không hợp lệ
+    friend istream &operator>>(istream &, DIEM &); // Đè chồng toán tử >>
+    friend ostream &operator<<(ostream &, DIEM);   // Đè chồng toán tử <<
 };
 
 #endif

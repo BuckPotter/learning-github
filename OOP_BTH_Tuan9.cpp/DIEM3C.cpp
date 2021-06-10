@@ -6,44 +6,46 @@ DIEM3C::DIEM3C(double xx, double yy, double zz)
     z = zz;
 }
 
-DIEM3C::~DIEM3C()
+DIEM3C::~DIEM3C() // Đặt lại điểm về gốc tọa độ
 {
     x = y = z = 0;
 }
 
-DIEM3C DIEM3C::Get()
+DIEM3C DIEM3C::Get() // Trả về điểm có tọa độ của điểm đang xét
 {
     return *this;
 }
 
-double DIEM3C::GetZ()
+double DIEM3C::GetZ() // Bổ sung thêm GetZ so với lớp cha DIEM
 {
     return z;
 }
 
-void DIEM3C::SetZ(double zz)
+void DIEM3C::SetZ(double zz) // Bổ sung thêm GetZ so với lớp cha DIEM
 {
     z = zz;
 }
 
-void DIEM3C::SetXYZ(double xx, double yy, double zz)
+void DIEM3C::SetXYZ(double xx, double yy, double zz) // Thiết lập tọa độ x y và z
 {
-    x = xx;
-    y = yy;
+    SetXY(xx, yy); // Gọi lại hàm thiết lập SetXY đã xây dựng ở lớp cha
     z = zz;
 }
 
-bool DIEM3C::KiemTra(DIEM3C d)
+void DIEM3C::SetXYZ(DIEM d, double zz)
 {
-    if (x == d.x || y == d.y || z == d.z)
-        return 1;
-    return 0;
+    SetXY(d.GetX(), d.GetY());
+    z = zz;
+}
+
+bool DIEM3C::KiemTra(DIEM3C d) // Kiểm tra 2 điểm ba chiều có trùng nhau không
+{
+    return this->DIEM::KiemTra(d) && z == d.z;
 }
 
 void DIEM3C::DiChuyen(double xx, double yy, double zz)
 {
-    x += xx;
-    y += yy;
+    DIEM::DiChuyen(xx, yy); // Gọi lại hàm di chuyển đã xây dựng ở lớp cha DIEM
     z += zz;
 }
 
@@ -54,19 +56,18 @@ double DIEM3C::KhoangCach(DIEM3C d)
 
 DIEM3C DIEM3C::DiemDoiXung()
 {
-    int a = 0, b = 0, c = 0;
-    if (x != 0)
-        a = -x;
-    if (y != 0)
-        b = -y;
-    if (z != 0)
-        c = -z;
-    return DIEM3C(a, b, c);
+    int zz = 0;
+    DIEM temp = DIEM::DiemDoiXung(); // Gọi lại hàm lấy tọa độ đối xứng cho x và y ở lớp DIEM
+    if (z != 0)                      // Tránh trường hợp trả về -0
+        zz = -z;
+    DIEM3C temp2;           // biến phụ temp2 thuộc lớp temp2 để trả về
+    temp2.SetXYZ(temp, zz); // Thiết lập tọa độ cho biên trả về
+    return temp2;
 }
 
 void DIEM3C::Nhap()
 {
-    DIEM::Nhap();
+    DIEM::Nhap(); // Gọi lại hàm nhập đã xây dựng ở lớp điểm
     cout << "Nhap cao do: ";
     cin >> z;
 }
@@ -86,7 +87,7 @@ bool DIEM3C::KiemTraTamGiac(DIEM3C b, DIEM3C c)
     return 1;
 }
 
-double DIEM3C::ChuVi(DIEM3C b, DIEM3C c)
+double DIEM3C::ChuVi(DIEM3C &b, DIEM3C &c) // Tham chiếu để thay đổi điểm khi nhập lại trong trường hợp tam giác không hợp lệ
 {
     if (KiemTraTamGiac(b, c) == 0) // Trường hợp tam giác không hợp lệ
     {
@@ -100,7 +101,7 @@ double DIEM3C::ChuVi(DIEM3C b, DIEM3C c)
     return KhoangCach(b) + KhoangCach(c) + b.KhoangCach(c);
 }
 
-double DIEM3C::DienTich(DIEM3C b, DIEM3C c)
+double DIEM3C::DienTich(DIEM3C &b, DIEM3C &c) // Tham chiếu để thay đổi điểm khi nhập lại trong trường hợp tam giác không hợp lệ
 {
     if (KiemTraTamGiac(b, c) == 0) // Trường hợp tam giác không hợp lệ
     {

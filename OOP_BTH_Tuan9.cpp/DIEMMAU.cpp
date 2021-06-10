@@ -13,29 +13,46 @@ DIEMMAU DIEMMAU::Get()
 
 void DIEMMAU::Set(DIEM d, MAU m)
 {
+    // Kế thừa các phương thức đã xây dựng ở các lớp cha
     SetXY(d.GetX(), d.GetY());
     MAU::Set(m);
 }
 
-bool DIEMMAU::KiemTraHopLe()
+void DIEMMAU::Set(DIEM d, int rr, int gg, int bb)
 {
-    return MAU::KiemTraHopLe();
+    // Kế thừa các phương thức đã xây dựng ở các lớp cha
+    SetXY(d.GetX(), d.GetY());
+    MAU::Set(rr, gg, bb);
 }
 
-bool DIEMMAU::KiemTraTrung(DIEMMAU d)
+void DIEMMAU::Set(double xx, double yy, int rr, int gg, int bb)
+{
+    // Kế thừa các phương thức thiết lập đã xây dựng ở các lớp cha
+    DIEM::SetXY(xx, yy);
+    MAU::Set(rr, gg, bb);
+}
+
+bool DIEMMAU::KiemTraHopLe() // Chỉ cần kiểm tra mã màu
+{
+    return MAU::KiemTraHopLe(); // Kế thừa từ lớp cha MAU
+}
+
+bool DIEMMAU::KiemTraTrung(DIEMMAU d) // Kiểm tra 2 DIEMMAU có giống nhau không (cả tọa độ và mã màu)
 {
     MAU a(d.Get_R(), d.Get_G(), d.Get_B());
-    return KiemTra(d) && MAU::KiemTraTrung(a);
+    return KiemTra(d) && MAU::KiemTraTrung(a); // Kế thừa 2 phương thức kiểm tra của lớp DIEM và MAU
 }
 
 void DIEMMAU::Nhap()
 {
+    // Kế thừa các phương thức nhập đã xây dựng ở các lớp cha
     DIEM::Nhap();
     MAU::Nhap();
 }
 
 void DIEMMAU::Xuat()
 {
+    // Kế thừa các phương thức xuất đã xây dựng ở các lớp cha
     DIEM::Xuat();
     cout << ". ";
     MAU::Xuat();
