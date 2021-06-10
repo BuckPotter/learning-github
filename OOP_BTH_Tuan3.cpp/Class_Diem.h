@@ -1,5 +1,5 @@
-#ifndef _CLASS_DIEM
-#define _CLASS_DIEM
+#ifndef _CLASS_
+#define _CLASS_
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -27,8 +27,8 @@ public:
     void Nhap();
     void Xuat();
     void DiChuyen(double, double);
-    bool KiemTra2DiemTrungNhau(Diem);
-    double KhoangCach(Diem); //Tra ve 1 so thuc la khoang cach cua 2 diem hay do dai 1 canh
+    bool KiemTra2TrungNhau(Diem);
+    double KhoangCach(Diem); //Tra ve 1 so thuc la khoang cach cua 2  hay do dai 1 canh
     void Ve();
     friend istream &operator>>(istream &, Diem &); //De chong toan tu >>
     friend ostream &operator<<(ostream &, Diem);   //De chong toan tu <<

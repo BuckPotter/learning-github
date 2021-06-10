@@ -1,13 +1,13 @@
 #ifndef __DIEM3C_H__
 #define __DIEM3C_H__
-#include "DIEM.h"
-
+#include "DIEM.cpp"
 class DIEM3C : public DIEM
 {
-    int z;
+protected:
+    int z; // cao độ
 
 public:
-    DIEM3C(int = 0, int = 0, int = 0);
+    DIEM3C(double = 0, double = 0, double = 0);
     ~DIEM3C();
     DIEM3C Get();
     double GetZ();
@@ -19,8 +19,9 @@ public:
     DIEM3C DiemDoiXung();
     void Nhap();
     void Xuat();
-    double ChuVi(DIEM3C, DIEM3C, DIEM3C);
-    double DienTich(DIEM3C, DIEM3C, DIEM3C);
+    bool KiemTraTamGiac(DIEM3C, DIEM3C);
+    double ChuVi(DIEM3C, DIEM3C);
+    double DienTich(DIEM3C, DIEM3C);
     friend istream &operator>>(istream &, DIEM3C &);
     friend ostream &operator<<(ostream &, DIEM3C);
 };

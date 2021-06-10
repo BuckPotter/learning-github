@@ -16,6 +16,11 @@ double DIEM::GetY() // Trả về 1 số kiểu double là tung độ y của đ
     return y;
 }
 
+DIEM DIEM::GetXY()
+{
+    return *this;
+}
+
 void DIEM::SetX(double a) // Thiết lập hoành độ x
 {
     x = a;
@@ -34,9 +39,10 @@ void DIEM::SetXY(double a, double b) // Thiết lập hoành độ và tung đ�
 
 void DIEM::Nhap()
 {
-    cout << "\tNhap hoanh do: ";
+    cout << "\tNhap toa do diem:\n";
+    cout << "Nhap hoanh do: ";
     cin >> x;
-    cout << "\tNhap tung do: ";
+    cout << "Nhap tung do: ";
     cin >> y;
 }
 
@@ -65,11 +71,31 @@ double DIEM::KhoangCach(DIEM b) //Đồng thời cũng là cạnh của tam giá
     return sqrt(hoanh_hoanh * hoanh_hoanh + tung_tung * tung_tung);
 }
 
+DIEM DIEM::Doi_Xung_Qua_O()
+{
+    DIEM Doi_Xung;
+    Doi_Xung.x = -this->x;
+    Doi_Xung.y = -this->y;
+    return Doi_Xung;
+}
+
+double DIEM::Chu_Vi_Tam_Giac(DIEM b, DIEM c)
+{
+    return this->KhoangCach(b) + this->KhoangCach(c) + b.KhoangCach(c);
+}
+
+double DIEM::Dien_Tich_Tam_Giac(DIEM b, DIEM c)
+{
+    double ncv = this->Chu_Vi_Tam_Giac(b, c) / 2;                                                           // Nửa chu vi
+    return sqrt(ncv * (ncv - this->KhoangCach(b)) * (ncv - this->KhoangCach(c)) * (ncv - c.KhoangCach(b))); // Công thức Herong
+}
+
 istream &operator>>(istream &is, DIEM &d)
 {
-    cout << "\tNhap hoanh do: ";
+    cout << "\tNhap toa do diem:\n";
+    cout << "Nhap hoanh do: ";
     is >> d.x;
-    cout << "\tNhap tung do: ";
+    cout << "Nhap tung do: ";
     is >> d.y;
     return is;
 }

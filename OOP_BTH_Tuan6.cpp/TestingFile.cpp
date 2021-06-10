@@ -1,5 +1,4 @@
-#include "CMatrix.cpp"
-
+#include "Class_SoPhuc.cpp"
 int main()
 {
     /*    CV a, b;
@@ -10,10 +9,10 @@ int main()
     cout << a * 2 << endl;
     cout << b / 2;
     */
-    CM a, b;
-    cin >> a >> b;
-    CM c = a * b;
-    cout << c;
-
+    SP a;
+    cout << a << endl;
+    cin >> a;
+    cout << a + 5 << endl;
+    cout << a - 5;
     return 0;
 }

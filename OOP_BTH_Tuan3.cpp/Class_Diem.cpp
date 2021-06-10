@@ -51,7 +51,7 @@ void Diem::Nhap()
 
 void Diem::Xuat()
 {
-    cout << "Toa do cua diem la: (" << x << ", " << y << ")";
+    cout << "Toa do cua  la: (" << x << ", " << y << ")";
 }
 
 void Diem::DiChuyen(double a, double b) // Tịnh tiến tọa độ ban đầu
@@ -60,7 +60,7 @@ void Diem::DiChuyen(double a, double b) // Tịnh tiến tọa độ ban đầu
     y += b;
 }
 
-bool Diem::KiemTra2DiemTrungNhau(Diem b)
+bool Diem::KiemTra2TrungNhau(Diem b)
 {
     if (this->x == b.x && this->y == b.y)
         return 1;
@@ -85,7 +85,7 @@ istream &operator>>(istream &is, Diem &d)
 
 ostream &operator<<(ostream &os, Diem d)
 {
-    os << "Toa do cua diem la: (" << d.x << ", " << d.y << ")";
+    os << "Toa do cua  la: (" << d.x << ", " << d.y << ")";
     return os;
 }
 
